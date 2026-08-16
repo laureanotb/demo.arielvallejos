@@ -34,11 +34,19 @@ a:hover{color:#5EFFD4}
 .fu{opacity:0;animation:fadeUp 0.5s cubic-bezier(.16,1,.3,1) forwards}
 /* --- Responsive móvil / tablet --- */
 @media (max-width:760px){
-  #hero{padding:22px 14px !important;min-height:auto !important}
-  #hero>div{padding:32px 20px !important;border-radius:22px !important}
-  .hero-grid{grid-template-columns:1fr !important;gap:26px !important}
-  .hours-grid{gap:5px !important}
-  .hours-grid span{font-size:10px !important;letter-spacing:0 !important}
+  #hero{padding:20px 14px 34px !important;min-height:auto !important}
+  #hero>div{padding:34px 22px 30px !important;border-radius:24px !important;transform:none !important}
+  .hero-grid{grid-template-columns:1fr !important;gap:24px !important;justify-items:center}
+  /* Texto centrado: apilado se ve mucho más equilibrado que alineado a la izquierda */
+  .hero-text{text-align:center !important}
+  .hero-name-row{justify-content:center !important;gap:10px !important}
+  .hero-text h1{font-size:clamp(34px,10.5vw,46px) !important}
+  .hero-text p{font-size:15.5px !important;line-height:1.6 !important}
+  .promo-role{display:none !important}
+  /* 7 días en 4 columnas: entra sin achicar el texto a un tamaño ilegible */
+  .hours-grid{grid-template-columns:repeat(4,1fr) !important;gap:6px !important;margin-top:28px !important}
+  .hero-cta{gap:10px !important}
+  .hero-cta a{flex:1 1 100%;justify-content:center}
   #sobre-mi{grid-template-columns:1fr !important;gap:28px !important;padding:72px 18px !important}
   #sobre-mi>image-slot{height:300px !important;max-width:340px;margin:0 auto;display:block}
   #resultados,#experiencia,#servicios,#novedades,#galeria,#canal{padding-left:18px !important;padding-right:18px !important;padding-bottom:80px !important}
@@ -48,8 +56,8 @@ a:hover{color:#5EFFD4}
   .side-nav{display:none !important}
 }
 @media (max-width:400px){
-  #hero>div{padding:26px 15px !important}
-  .hours-grid span{font-size:9px !important}
+  #hero>div{padding:28px 16px 26px !important}
+  .hours-grid{gap:5px !important}
 }
 </style>
 </helmet>
@@ -59,8 +67,6 @@ a:hover{color:#5EFFD4}
   <div style="{{ preloaderStyle }}">
     <div style="width:34px;height:34px;border-radius:50%;border:2px solid rgba(46,230,184,0.18);border-top-color:rgba(46,230,184,0.85);animation:spin 0.7s linear infinite"></div>
   </div>
-
-  <div style="position:fixed;top:0;left:0;height:3px;background:#2EE6B8;box-shadow:0 0 10px rgba(46,230,184,0.7);z-index:200;width:{{ scrollProgress }}%"></div>
 
   <div class="side-nav" style="position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:150">
     <sc-for list="{{ navDots }}" as="d" hint-placeholder-count="8">
@@ -92,7 +98,7 @@ a:hover{color:#5EFFD4}
     <div style="{{ promoBarStyle }}">
       <span style="{{ promoNameStyle }}">Ariel Vallejos</span>
       <span style="{{ promoBadgeStyle }}">✓</span>
-      <span style="{{ promoRoleStyle }}">Presidente &amp; CEO — Sur Finanzas Group</span>
+      <span class="promo-role" style="{{ promoRoleStyle }}">Presidente &amp; CEO — Sur Finanzas Group</span>
       <div style="position:absolute;top:0;bottom:0;width:70px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);animation:promoShine 1.76s ease-in-out infinite;pointer-events:none"></div>
     </div>
   </section>
@@ -118,9 +124,9 @@ a:hover{color:#5EFFD4}
             </div>
           </div>
         </div>
-        <div style="text-align:left">
+        <div class="hero-text" style="text-align:left">
           <div class="fu" style="animation-delay:.06s;font-family:'Inter',sans-serif;font-weight:500;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#A3B1B5;margin-bottom:16px">Finanzas &amp; Liderazgo</div>
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap">
+          <div class="hero-name-row" style="display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap">
             <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,5.2vw,58px);line-height:1.02;color:#2EE6B8;margin:0;letter-spacing:-0.02em;animation:nameGlow 1.93s ease-in-out 1.6s infinite"><sc-for list="{{ nameLetters }}" as="l" hint-placeholder-count="14"><span style="{{ l.style }}">{{ l.ch }}</span></sc-for></h1>
             <span style="width:32px;height:32px;border-radius:50%;background:#2EE6B8;color:#08110F;font-size:17px;line-height:32px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;box-shadow:0 0 16px -2px rgba(46,230,184,0.7);opacity:0;animation:badgePop 0.28s cubic-bezier(.34,1.56,.64,1) .6s forwards">✓</span>
           </div>
@@ -143,7 +149,7 @@ a:hover{color:#5EFFD4}
       <div class="fu" style="animation-delay:.6s;position:relative;height:2px;width:220px;margin:34px auto 30px;background:rgba(46,230,184,0.15);border-radius:2px;overflow:hidden">
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,#2EE6B8,transparent);animation:shimmer 1.76s ease-in-out infinite"></div>
       </div>
-      <div class="fu" style="animation-delay:.7s;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px">
+      <div class="fu hero-cta" style="animation-delay:.7s;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px">
         <a href="https://wa.me/5491151758481" style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15px;border-radius:100px;transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px -10px rgba(46,230,184,0.7)">Escribir por WhatsApp</a>
         <a href="#sobre-mi" style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:transparent;border:1px solid rgba(148,163,168,0.35);color:#fff;font-weight:500;font-size:15px;border-radius:100px;transition:border-color 0.18s ease,color 0.18s ease,background 0.18s ease" style-hover="border-color:#2EE6B8;color:#2EE6B8;background:rgba(46,230,184,0.07)">Conocer más</a>
       </div>
@@ -292,13 +298,16 @@ a:hover{color:#5EFFD4}
       <p style="font-weight:300;font-size:16px;line-height:1.6;color:#A3B1B5;margin:0 0 44px;max-width:56ch;text-wrap:pretty">Charlas, equipo y detrás de escena.</p>
     </div>
     <div data-anim="reels" style="{{ reelsWrapStyle }}">
-      <div style="{{ reelFrameStyle }}">
+      <div data-reel-frame style="{{ reelFrameStyle }}">
         <div style="{{ reelTrackStyle }}">
           <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="4">
-            <div style="position:relative;flex:0 0 100%;height:100%;overflow:hidden;background:#000">
-              <video data-reel-video="{{ $index }}" src="{{ g.src }}" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+            <div onClick="{{ reelTogglePause }}" style="position:relative;flex:0 0 100%;height:100%;overflow:hidden;background:#000;cursor:pointer">
+              <video data-reel-video="{{ $index }}" src="{{ g.src }}" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
             </div>
           </sc-for>
+        </div>
+        <div style="{{ reelPauseIconStyle }}">
+          <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
         </div>
         <div onClick="{{ reelToggleMute }}" title="Sonido" style="{{ reelMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
           <sc-if value="{{ reelMuted }}" hint-placeholder-val="{{ true }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="m16 9 5 6"></path><path d="m21 9-5 6"></path></svg></sc-if>
@@ -388,7 +397,7 @@ a:hover{color:#5EFFD4}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, heroWordIdx: 0, loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0 };
+  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroWordIdx: 0, loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0 };
   taglineFull = 'Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.';
   phoneFull = '+54 9 11 5175-8481';
   sectionIds = ['hero', 'sobre-mi', 'resultados', 'experiencia', 'servicios', 'novedades', 'galeria', 'canal', 'contacto'];
@@ -472,7 +481,24 @@ class Component extends DCLogic {
         if (sec && sec.getBoundingClientRect().top < vh * 0.5) active = i;
       });
 
-      this.setState({ scrollProgress: progress, activeSection: active, showBackToTop: scrollY > 400, parallaxY: scrollY });
+      // El reel sólo se reproduce cuando la sección está realmente a la vista.
+      let reelsInView = false;
+      const frame = document.querySelector('[data-reel-frame]');
+      if (frame) {
+        const fr = frame.getBoundingClientRect();
+        const shown = Math.min(fr.bottom, vh) - Math.max(fr.top, 0);
+        reelsInView = fr.height > 0 && shown >= fr.height * 0.5;
+      }
+      const patch = { scrollProgress: progress, activeSection: active, showBackToTop: scrollY > 400, parallaxY: scrollY };
+      if (reelsInView !== this.state.reelsInView) {
+        patch.reelsInView = reelsInView;
+        if (reelsInView) {
+          // Al entrar: reanudar y, si el usuario no silenció a mano, con sonido.
+          patch.reelPaused = false;
+          if (!this.userSetMute) patch.reelMuted = false;
+        }
+      }
+      this.setState(patch);
     };
     this.onScroll = () => {
       if (this.scrollScheduled) return;
@@ -483,17 +509,69 @@ class Component extends DCLogic {
     document.addEventListener('scroll', this.onScroll, { passive: true });
     document.body.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('resize', this.onScroll);
+
+    // Si el autoplay con sonido quedó bloqueado, el primer gesto del usuario
+    // en cualquier parte de la página lo habilita.
+    this.userSetMute = false;
+    this.pendingUnmute = false;
+    this.onFirstGesture = () => {
+      if (!this.pendingUnmute || this.userSetMute) return;
+      this.pendingUnmute = false;
+      if (this.state.reelsInView) this.setState({ reelMuted: false });
+    };
+    document.addEventListener('pointerdown', this.onFirstGesture, { passive: true });
+    document.addEventListener('keydown', this.onFirstGesture, { passive: true });
+
+    // Detección robusta de la sección del reel. El scroll de esta página ocurre
+    // sobre document.body, así que no dependemos sólo del evento 'scroll'.
+    this.setupReelObserver = () => {
+      if (this.reelObserver || !('IntersectionObserver' in window)) return;
+      const frame = document.querySelector('[data-reel-frame]');
+      if (!frame) return;
+      this.reelObserver = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          const inView = en.isIntersecting && en.intersectionRatio >= 0.5;
+          if (inView === this.state.reelsInView) return;
+          const patch = { reelsInView: inView };
+          if (inView) {
+            patch.reelPaused = false;
+            if (!this.userSetMute) patch.reelMuted = false;
+          }
+          this.setState(patch);
+        });
+      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+      this.reelObserver.observe(frame);
+    };
+
     this.checkVisibility();
-    setTimeout(() => this.syncReels(), 300);
+    setTimeout(() => { this.setupReelObserver(); this.syncReels(); }, 300);
   }
 
   syncReels() {
     const vids = document.querySelectorAll('[data-reel-video]');
+    const inView = this.state.reelsInView;
     vids.forEach(v => {
       const active = Number(v.dataset.reelVideo) === this.state.reelIndex;
+      // Fuera de la sección o slide inactivo: detener y rebobinar.
+      if (!active || !inView) {
+        v.pause();
+        if (!active) { try { v.currentTime = 0; } catch (e) {} }
+        return;
+      }
       v.muted = this.state.reelMuted;
-      if (active) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
-      else { v.pause(); v.currentTime = 0; }
+      if (this.state.reelPaused) { v.pause(); return; }
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {
+        // El navegador bloqueó el autoplay con sonido: arrancamos en mudo
+        // y dejamos pendiente activarlo en el primer gesto del usuario.
+        if (!v.muted) {
+          v.muted = true;
+          this.pendingUnmute = true;
+          if (!this.state.reelMuted) this.setState({ reelMuted: true });
+          const p2 = v.play();
+          if (p2 && p2.catch) p2.catch(() => {});
+        }
+      });
     });
   }
 
@@ -525,6 +603,9 @@ class Component extends DCLogic {
     document.removeEventListener('scroll', this.onScroll);
     document.body.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onScroll);
+    document.removeEventListener('pointerdown', this.onFirstGesture);
+    document.removeEventListener('keydown', this.onFirstGesture);
+    if (this.reelObserver) { this.reelObserver.disconnect(); this.reelObserver = null; }
     if (this.countInterval) clearInterval(this.countInterval);
     if (this.preloadTimer) clearTimeout(this.preloadTimer);
     if (this.phoneInterval) clearInterval(this.phoneInterval);
@@ -631,7 +712,23 @@ class Component extends DCLogic {
     const reelMuted = this.state.reelMuted;
     const reelUnmuted = !this.state.reelMuted;
     const reelMuteStyle = `position:absolute;right:12px;bottom:14px;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;color:#08110F;background:rgba(255,255,255,0.86);border:1px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,0.6);transition:background 0.18s ease,border-color 0.18s ease`;
-    const reelToggleMute = () => this.setState(st => ({ reelMuted: !st.reelMuted }));
+    const reelToggleMute = () => {
+      this.pendingUnmute = false;
+      this.userSetMute = this.state.reelMuted === false; // pasa a mudo por decisión propia
+      this.setState(st => ({ reelMuted: !st.reelMuted }));
+    };
+    // Tap sobre el video: primero habilita el sonido si quedó bloqueado,
+    // después alterna pausa / reproducción.
+    const reelTogglePause = () => {
+      if (this.pendingUnmute && !this.userSetMute) {
+        this.pendingUnmute = false;
+        this.setState({ reelMuted: false, reelPaused: false });
+        return;
+      }
+      this.setState(st => ({ reelPaused: !st.reelPaused }));
+    };
+    const showPauseIcon = this.state.reelPaused && this.state.reelsInView;
+    const reelPauseIconStyle = `position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;background:rgba(255,255,255,0.9);box-shadow:0 10px 30px -8px rgba(0,0,0,0.65);opacity:${showPauseIcon ? 1 : 0};transform:scale(${showPauseIcon ? 1 : 0.7});transition:opacity 0.2s ease,transform 0.2s cubic-bezier(.16,1,.3,1)`;
     const reelsVisible = !!this.state.blocksVisible['reels'];
     const reelsWrapStyle = `display:flex;flex-direction:column;align-items:center;opacity:${reelsVisible ? 1 : 0};transform:translateY(${reelsVisible ? 0 : 26}px);transition:opacity 0.5s cubic-bezier(.16,1,.3,1),transform 0.5s cubic-bezier(.16,1,.3,1)`;
     const reelFrameStyle = 'position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset';
@@ -708,7 +805,7 @@ class Component extends DCLogic {
     const heroCardStyle = `position:relative;max-width:920px;width:100%;background:linear-gradient(158deg,#161E20 0%,#0F1517 100%);border:1px solid rgba(46,230,184,0.15);border-radius:28px;padding:56px 64px;box-shadow:0 0 0 1px rgba(46,230,184,0.05),0 40px 100px -30px rgba(46,230,184,0.15),0 0 60px -20px rgba(46,230,184,0.2);transform:perspective(1000px) rotateX(${this.state.tiltY}deg) rotateY(${this.state.tiltX}deg);transition:transform 0.18s ease-out`;
     const statusText = isOpenNow ? 'Abierto ahora' : 'Cerrado ahora';
     const statusStyle = `color:${isOpenNow ? '#2EE6B8' : '#FF5C5C'};font-weight:500`;
-    return { stats, experience, services, hours, statusText, statusStyle, contactoItemStyle0, contactoItemStyle1, contactoItemStyle2, contactoItemStyle3, contactoItemStyle4, contactoItemStyle5, promoBarStyle, promoNameStyle, promoBadgeStyle, promoRoleStyle, nameLetters, phoneDisplay, heroCardStyle, heroMouseMove: this.heroMouseMove, heroMouseLeave: this.heroMouseLeave, particles, soyTextStyle: soyStyle, posts, gallery, preloaderStyle, parallaxStyle1, parallaxStyle2, parallaxStyle3, navDots, backToTopStyle, scrollProgress: this.state.scrollProgress, scrollToTop: () => this.scrollToY(0, true), headResultadosStyle, headExperienciaStyle, headServiciosStyle, headNovedadesStyle, headGaleriaStyle, statsWrapStyle, contactoStyle, canalStyle, canalTags, heroWords, reelMuted, reelUnmuted, reelMuteStyle, reelToggleMute, reelsWrapStyle, reelFrameStyle, reelTrackStyle, reelPrevStyle, reelNextStyle, reelPrev, reelNext, reelDots };
+    return { stats, experience, services, hours, statusText, statusStyle, contactoItemStyle0, contactoItemStyle1, contactoItemStyle2, contactoItemStyle3, contactoItemStyle4, contactoItemStyle5, promoBarStyle, promoNameStyle, promoBadgeStyle, promoRoleStyle, nameLetters, phoneDisplay, heroCardStyle, heroMouseMove: this.heroMouseMove, heroMouseLeave: this.heroMouseLeave, particles, soyTextStyle: soyStyle, posts, gallery, preloaderStyle, parallaxStyle1, parallaxStyle2, parallaxStyle3, navDots, backToTopStyle, scrollProgress: this.state.scrollProgress, scrollToTop: () => this.scrollToY(0, true), headResultadosStyle, headExperienciaStyle, headServiciosStyle, headNovedadesStyle, headGaleriaStyle, statsWrapStyle, contactoStyle, canalStyle, canalTags, heroWords, reelMuted, reelUnmuted, reelMuteStyle, reelToggleMute, reelTogglePause, reelPauseIconStyle, reelsWrapStyle, reelFrameStyle, reelTrackStyle, reelPrevStyle, reelNextStyle, reelPrev, reelNext, reelDots };
   }
 }
 </script>
