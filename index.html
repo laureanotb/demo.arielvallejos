@@ -238,19 +238,22 @@ a:hover{color:#5EFFD4}
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2EE6B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6C6.9 7.4 5.5 9.7 5.5 12.6V18h5.2v-5.4H8.2c0-1.9.6-3.3 2.3-4.3L9.5 6Z"></path><path d="M18 6c-2.6 1.4-4 3.7-4 6.6V18h5.2v-5.4h-2.5c0-1.9.6-3.3 2.3-4.3L18 6Z"></path></svg>
       </div>
       <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;color:#fff;margin:0 0 22px;letter-spacing:-0.01em">Soluciones financieras personalizadas que impulsan resultados.</h2>
-      <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:220px;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 30px 70px -35px rgba(46,230,184,0.45);margin:4px 0 24px;cursor:pointer">
-        <video data-solo-video src="uploads/-3319039138483962627.mp4" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
-        <div style="{{ soloPauseIconStyle }}">
-          <div style="width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:17px solid #08110F;margin-left:5px"></div>
-        </div>
-        <div onClick="{{ soloToggleMute }}" title="Sonido" style="{{ soloMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
-          <sc-if value="{{ soloMuted }}" hint-placeholder-val="{{ true }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="m16 9 5 6"></path><path d="m21 9-5 6"></path></svg></sc-if>
-          <sc-if value="{{ soloUnmuted }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 6a9 9 0 0 1 0 12"></path></svg></sc-if>
-        </div>
-      </div>
       <p style="font-weight:300;font-size:17px;line-height:1.75;color:#A3B1B5;text-wrap:pretty;margin:0 0 18px">Como Presidente y CEO de Sur Finanzas Group, lidero equipos de alto rendimiento comprometidos con ofrecer soluciones financieras personalizadas que impulsan resultados positivos tanto para nuestros clientes como para la organización.</p>
       <p style="font-weight:300;font-size:17px;line-height:1.75;color:#A3B1B5;text-wrap:pretty;margin:0 0 18px">Mi misión se centra en la innovación, el crecimiento sostenible y la creación de valor a largo plazo, trabajando junto a un equipo directivo excepcional para implementar una visión estratégica clara que potencie el éxito de nuestros clientes y nuestra empresa.</p>
       <p style="font-weight:300;font-size:17px;line-height:1.75;color:#A3B1B5;text-wrap:pretty;margin:0">Creo firmemente en la importancia de una cultura empresarial sólida, donde la colaboración, la creatividad y el aprendizaje continuo sean pilares fundamentales. Mi compromiso es construir un equipo de líderes altamente capacitados, motivados y alineados con nuestros valores y visión.</p>
+    </div>
+  </section>
+
+  <section id="video-destacado" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px;display:flex;justify-content:center">
+    <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset;cursor:pointer">
+      <video data-solo-video src="uploads/-3319039138483962627.mp4" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
+      <div style="{{ soloPauseIconStyle }}">
+        <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
+      </div>
+      <div onClick="{{ soloToggleMute }}" title="Sonido" style="{{ soloMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
+        <sc-if value="{{ soloMuted }}" hint-placeholder-val="{{ true }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="m16 9 5 6"></path><path d="m21 9-5 6"></path></svg></sc-if>
+        <sc-if value="{{ soloUnmuted }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 6a9 9 0 0 1 0 12"></path></svg></sc-if>
+      </div>
     </div>
   </section>
 
@@ -949,7 +952,7 @@ class Component extends DCLogic {
     // para un único video fijo, sin carrusel.
     const soloMuted = this.state.soloMuted;
     const soloUnmuted = !this.state.soloMuted;
-    const soloMuteStyle = `position:absolute;right:10px;bottom:10px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;color:#08110F;background:rgba(255,255,255,0.86);border:1px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,0.6);transition:background 0.18s ease,border-color 0.18s ease`;
+    const soloMuteStyle = `position:absolute;right:12px;bottom:14px;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;color:#08110F;background:rgba(255,255,255,0.86);border:1px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,0.6);transition:background 0.18s ease,border-color 0.18s ease`;
     const soloToggleMute = () => {
       this.soloPendingUnmute = false;
       const willMute = this.state.soloMuted === false;
@@ -976,7 +979,7 @@ class Component extends DCLogic {
       this.setState(st => ({ soloPaused: !st.soloPaused }));
     };
     const showSoloPauseIcon = this.state.soloPaused && this.state.soloInView;
-    const soloPauseIconStyle = `position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;background:rgba(255,255,255,0.9);box-shadow:0 10px 30px -8px rgba(0,0,0,0.65);opacity:${showSoloPauseIcon ? 1 : 0};transform:scale(${showSoloPauseIcon ? 1 : 0.7});transition:opacity 0.2s ease,transform 0.2s cubic-bezier(.16,1,.3,1)`;
+    const soloPauseIconStyle = `position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;background:rgba(255,255,255,0.9);box-shadow:0 10px 30px -8px rgba(0,0,0,0.65);opacity:${showSoloPauseIcon ? 1 : 0};transform:scale(${showSoloPauseIcon ? 1 : 0.7});transition:opacity 0.2s ease,transform 0.2s cubic-bezier(.16,1,.3,1)`;
     const reelsVisible = !!this.state.blocksVisible['reels'];
     const reelsWrapStyle = `display:flex;flex-direction:column;align-items:center;opacity:${reelsVisible ? 1 : 0};transform:translateY(${reelsVisible ? 0 : 18}px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
     const reelFrameStyle = 'position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset';
