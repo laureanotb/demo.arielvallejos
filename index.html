@@ -3,6 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ariel Vallejo | Presidente &amp; CEO, Sur Finanzas Group</title>
+<meta name="description" content="Construyo instituciones financieras sólidas y equipos que piensan a largo plazo. Conocé la trayectoria, los servicios y la presencia de Ariel Vallejo en el deporte argentino.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://demo-arielvallejos.vercel.app/">
+<meta property="og:site_name" content="Ariel Vallejo — Sur Finanzas Group">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Ariel Vallejo | Presidente & CEO, Sur Finanzas Group">
+<meta property="og:description" content="Construyo instituciones financieras sólidas y equipos que piensan a largo plazo. Conocé la trayectoria, los servicios y la presencia de Ariel Vallejo en el deporte argentino.">
+<meta property="og:image" content="https://demo-arielvallejos.vercel.app/uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jpg">
+<meta property="og:image:width" content="640">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ariel Vallejo | Presidente & CEO, Sur Finanzas Group">
+<meta name="twitter:description" content="Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.">
+<meta name="twitter:image" content="https://demo-arielvallejos.vercel.app/uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jpg">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -70,6 +85,13 @@ a:hover{color:#5EFFD4}
    porque un animation inline pisaría la animación de entrada) */
 .stagger[data-shown="1"]>.glow-title{animation:cardIn var(--dur) var(--ease) both,nameGlow 1.93s ease-in-out 1.1s infinite}
 
+/* Etiquetas del canal: label editorial con subrayado que se dibuja al pasar
+   el mouse, en vez del pill+puntito genérico. */
+.tag-item{position:relative;display:inline-block;padding-bottom:4px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA3A7;cursor:default;transition:color .22s ease}
+.tag-item i{position:absolute;left:0;bottom:0;height:1px;width:100%;background:#2EE6B8;transform:scaleX(0);transform-origin:left;transition:transform .32s var(--ease)}
+.tag-item:hover{color:#2EE6B8}
+.tag-item:hover i{transform:scaleX(1)}
+
 /* Accesibilidad: quien pide menos movimiento ve el contenido sin animación */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0ms !important;transition-duration:.01ms !important;transition-delay:0ms !important}
@@ -86,7 +108,11 @@ a:hover{color:#5EFFD4}
   .hero-name-row{justify-content:center !important;gap:10px !important}
   .hero-text h1{font-size:clamp(34px,10.5vw,46px) !important}
   .hero-text p{font-size:15.5px !important;line-height:1.6 !important}
-  .promo-role{display:none !important}
+  /* El cargo se mantiene visible pero se trunca con puntos suspensivos en
+     vez de desaparecer, para que la barra nunca desborde el ancho. */
+  .promo-bar{padding:0 14px !important;gap:7px !important}
+  .promo-bar>span:not(.promo-role){flex:0 0 auto;white-space:nowrap}
+  .promo-role{font-size:10.5px !important;min-width:0;flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0 !important}
   /* 7 días en 4 columnas: entra sin achicar el texto a un tamaño ilegible */
   .hours-grid{grid-template-columns:repeat(4,1fr) !important;gap:6px !important;margin-top:28px !important}
   .hero-cta{gap:10px !important}
@@ -139,8 +165,8 @@ a:hover{color:#5EFFD4}
   </div>
 
   <section style="position:sticky;top:0;z-index:120;height:44px;overflow:hidden">
-    <div style="{{ promoBarStyle }}">
-      <span style="{{ promoNameStyle }}">Ariel Vallejos</span>
+    <div class="promo-bar" style="{{ promoBarStyle }}">
+      <span style="{{ promoNameStyle }}">Ariel Vallejo</span>
       <span style="{{ promoBadgeStyle }}">✓</span>
       <span class="promo-role" style="{{ promoRoleStyle }}">Presidente &amp; CEO — Sur Finanzas Group</span>
       <div style="position:absolute;top:0;bottom:0;width:70px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);animation:promoShine 1.76s ease-in-out infinite;pointer-events:none"></div>
@@ -153,19 +179,15 @@ a:hover{color:#5EFFD4}
         <div class="fu" style="animation-delay:.02s;display:flex;flex-direction:column;align-items:center;gap:18px">
           <div style="position:relative;width:168px;height:168px">
             <div style="position:absolute;inset:0;border-radius:50%;overflow:hidden;border:3px solid rgba(46,230,184,0.35);box-shadow:0 0 40px -8px rgba(46,230,184,0.4)">
-              <image-slot id="wa-avatar" shape="circle" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jfif" placeholder="foto de perfil" style="width:100%;height:100%"></image-slot>
+              <image-slot id="wa-avatar" shape="circle" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jpg" placeholder="foto de perfil" style="width:100%;height:100%"></image-slot>
             </div>
             <svg width="176" height="176" viewBox="0 0 176 176" style="position:absolute;top:-4px;left:-4px;transform:rotate(-90deg)">
               <circle cx="88" cy="88" r="86" fill="none" stroke="#2EE6B8" stroke-width="3" stroke-dasharray="540" style="animation:ringDraw 0.77s cubic-bezier(.16,1,.3,1) .1s forwards;stroke-dashoffset:540"></circle>
             </svg>
           </div>
-          <div style="position:relative;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:200px;height:22px;padding-top:8px;border-top:1px solid rgba(46,230,184,0.16);animation:chipDraw 0.33s cubic-bezier(.16,1,.3,1) .4s both">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2EE6B8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="m4 12.5 5.2 5.2L20 6.9"></path></svg>
-            <div style="position:relative;flex:1;height:22px">
-              <sc-for list="{{ heroWords }}" as="w" hint-placeholder-count="4">
-                <span style="{{ w.style }}">{{ w.label }}</span>
-              </sc-for>
-            </div>
+          <div style="position:relative;display:inline-flex;align-items:center;gap:10px;max-width:82vw;animation:chipDraw 0.33s cubic-bezier(.16,1,.3,1) .4s both">
+            <span style="width:3px;height:16px;border-radius:2px;background:#2EE6B8;flex:none;box-shadow:0 0 8px rgba(46,230,184,0.6)"></span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.01em;color:#C6D2D4;white-space:nowrap;overflow:hidden;text-overflow:clip;max-width:calc(82vw - 20px)">{{ heroTypeText }}<span style="display:inline-block;width:2px;height:13px;margin-left:1px;background:#2EE6B8;vertical-align:-2px;animation:caretBlink 0.9s step-end infinite"></span></span>
           </div>
         </div>
         <div class="hero-text" style="text-align:left">
@@ -210,7 +232,7 @@ a:hover{color:#5EFFD4}
   </section>
 
   <section id="sobre-mi" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:120px 32px;display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start">
-    <image-slot id="avatar" shape="rounded" radius="24" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jfif" placeholder="foto de Ariel Vallejos" style="width:100%;height:340px"></image-slot>
+    <image-slot id="avatar" shape="rounded" radius="24" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jpg" placeholder="foto de Ariel Vallejo" style="width:100%;height:340px"></image-slot>
     <div class="sec-head" data-anim="soy" style="{{ soyTextStyle }}">
       <div style="width:44px;height:44px;border-radius:13px;background:rgba(46,230,184,0.1);border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2EE6B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6C6.9 7.4 5.5 9.7 5.5 12.6V18h5.2v-5.4H8.2c0-1.9.6-3.3 2.3-4.3L9.5 6Z"></path><path d="M18 6c-2.6 1.4-4 3.7-4 6.6V18h5.2v-5.4h-2.5c0-1.9.6-3.3 2.3-4.3L18 6Z"></path></svg>
@@ -386,10 +408,10 @@ a:hover{color:#5EFFD4}
             <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#2EE6B8">Canal oficial de WhatsApp</span>
           </div>
           <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,3.2vw,34px);color:#fff;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.15">No te pierdas la oportunidad de estar siempre informado</h2>
-          <p style="font-weight:300;font-size:16.5px;line-height:1.7;color:#A3B1B5;margin:0 0 18px;max-width:62ch;text-wrap:pretty">Unite al canal oficial de Ariel Vallejos y accedé a contenido exclusivo sobre finanzas, inversiones, divisas extranjeras y transporte de caudales. Aprendé, crecé y tomá mejores decisiones financieras junto a nosotros.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <p style="font-weight:300;font-size:16.5px;line-height:1.7;color:#A3B1B5;margin:0 0 18px;max-width:62ch;text-wrap:pretty">Unite al canal oficial de Ariel Vallejo y accedé a contenido exclusivo sobre finanzas, inversiones, divisas extranjeras y transporte de caudales. Aprendé, crecé y tomá mejores decisiones financieras junto a nosotros.</p>
+          <div class="stagger" data-anim="canal-tags" style="display:flex;flex-wrap:wrap;gap:22px 26px">
             <sc-for list="{{ canalTags }}" as="t" hint-placeholder-count="4">
-              <span style="{{ t.style }}">{{ t.label }}</span>
+              <span class="tag-item">{{ t.label }}<i></i></span>
             </sc-for>
           </div>
         </div>
@@ -405,11 +427,11 @@ a:hover{color:#5EFFD4}
       <div style="{{ contactoItemStyle0 }};display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:26px">
         <div style="position:relative;width:110px;height:110px">
           <div style="position:absolute;inset:0;border-radius:50%;overflow:hidden;border:3px solid rgba(46,230,184,0.35);box-shadow:0 0 30px -6px rgba(46,230,184,0.4)">
-            <image-slot id="contact-avatar" shape="circle" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jfif" placeholder="foto de perfil" style="width:100%;height:100%"></image-slot>
+            <image-slot id="contact-avatar" shape="circle" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jpg" placeholder="foto de perfil" style="width:100%;height:100%"></image-slot>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#2EE6B8">Ariel Vallejos</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#2EE6B8">Ariel Vallejo</span>
           <span style="width:18px;height:18px;border-radius:50%;background:#2EE6B8;color:#08110F;font-size:10px;line-height:18px;display:inline-flex;align-items:center;justify-content:center;font-weight:700">✓</span>
         </div>
         <div style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;color:#fff">Presidente &amp; CEO — Sur Finanzas Group</div>
@@ -433,7 +455,7 @@ a:hover{color:#5EFFD4}
   </section>
 
   <footer style="position:relative;z-index:1;text-align:center;padding:0 32px 48px;font-weight:300;font-size:13px;color:#7A8C8F">
-    Ariel Vallejos © 2026
+    Ariel Vallejo © 2026
   </footer>
 
 </div>
@@ -441,7 +463,8 @@ a:hover{color:#5EFFD4}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroWordIdx: 0, loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0 };
+  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroTypeText: '', loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0 };
+  heroPhrases = ['Papá y amigo', 'Palabra y compromiso', 'Cercano al barrio', 'Finanzas con propósito'];
   taglineFull = 'Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.';
   phoneFull = '+54 9 11 5175-8481';
   sectionIds = ['hero', 'sobre-mi', 'resultados', 'experiencia', 'servicios', 'novedades', 'galeria', 'canal', 'contacto'];
@@ -449,7 +472,32 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.preloadTimer = setTimeout(() => this.setState({ loading: false }), 700);
-    this.heroWordInterval = setInterval(() => this.setState(st => ({ heroWordIdx: st.heroWordIdx + 1 })), 2600);
+
+    // Máquina de escribir para la frase del hero: tipea, sostiene, borra y
+    // pasa a la siguiente — con cursor parpadeante (@keyframes caretBlink).
+    let phraseIdx = 0, charIdx = 0, typing = true;
+    const TYPE_MS = 42, DELETE_MS = 24, HOLD_MS = 1700, GAP_MS = 380;
+    const typeTick = () => {
+      const phrase = this.heroPhrases[phraseIdx];
+      if (typing) {
+        charIdx++;
+        this.setState({ heroTypeText: phrase.slice(0, charIdx) });
+        if (charIdx >= phrase.length) { typing = false; this.heroTypeTimer = setTimeout(typeTick, HOLD_MS); return; }
+        this.heroTypeTimer = setTimeout(typeTick, TYPE_MS);
+      } else {
+        charIdx--;
+        this.setState({ heroTypeText: phrase.slice(0, charIdx) });
+        if (charIdx <= 0) {
+          typing = true;
+          phraseIdx = (phraseIdx + 1) % this.heroPhrases.length;
+          this.heroTypeTimer = setTimeout(typeTick, GAP_MS);
+          return;
+        }
+        this.heroTypeTimer = setTimeout(typeTick, DELETE_MS);
+      }
+    };
+    this.heroTypeTimer = setTimeout(typeTick, 500);
+
     this.headerSlideInterval = setInterval(() => this.setState(s => ({ headerSlide: (s.headerSlide + 1) % 2 })), 13000);
 
     let phoneTick = 0;
@@ -560,12 +608,22 @@ class Component extends DCLogic {
     // en cualquier parte de la página lo habilita.
     this.userSetMute = false;
     this.pendingUnmute = false;
+    this.getActiveReelVideo = () => document.querySelector('[data-reel-video="' + this.state.reelIndex + '"]');
     this.onFirstGesture = () => {
       if (!this.pendingUnmute || this.userSetMute) return;
       this.pendingUnmute = false;
-      if (this.state.reelsInView) this.setState({ reelMuted: false });
+      if (!this.state.reelsInView) return;
+      // Desmutear el <video> real de forma SÍNCRONA, dentro del mismo gesto:
+      // es lo único que garantiza el permiso de audio en Safari/iOS — pasar
+      // esto sólo por setState (que puede re-renderizar de forma diferida)
+      // podía perder la ventana del gesto y el video quedaba mudo igual.
+      const v = this.getActiveReelVideo();
+      if (v) { v.muted = false; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      this.setState({ reelMuted: false });
     };
     document.addEventListener('pointerdown', this.onFirstGesture, { passive: true });
+    document.addEventListener('click', this.onFirstGesture, { passive: true });
+    document.addEventListener('touchend', this.onFirstGesture, { passive: true });
     document.addEventListener('keydown', this.onFirstGesture, { passive: true });
 
     // Detección robusta de la sección del reel. El scroll de esta página ocurre
@@ -650,6 +708,8 @@ class Component extends DCLogic {
     document.body.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onScroll);
     document.removeEventListener('pointerdown', this.onFirstGesture);
+    document.removeEventListener('click', this.onFirstGesture);
+    document.removeEventListener('touchend', this.onFirstGesture);
     document.removeEventListener('keydown', this.onFirstGesture);
     if (this.reelObserver) { this.reelObserver.disconnect(); this.reelObserver = null; }
     if (this.countInterval) clearInterval(this.countInterval);
@@ -657,7 +717,7 @@ class Component extends DCLogic {
     if (this.phoneInterval) clearInterval(this.phoneInterval);
     if (this.phoneStartTimer) clearTimeout(this.phoneStartTimer);
     if (this.headerSlideInterval) clearInterval(this.headerSlideInterval);
-    if (this.heroWordInterval) clearInterval(this.heroWordInterval);
+    if (this.heroTypeTimer) clearTimeout(this.heroTypeTimer);
   }
 
   scrollToSection(id) {
@@ -724,17 +784,17 @@ class Component extends DCLogic {
       style: `position:absolute;top:${top}%;left:${left}%;width:${2 + (i % 3)}px;height:${2 + (i % 3)}px;border-radius:50%;background:rgba(46,230,184,${0.3 + (i % 4) * 0.1});animation:drift ${6 + (i % 5)}s ease-in-out infinite;animation-delay:${(i * 0.4).toFixed(1)}s`
     }));
     const postsData = [
-      { date: '16 ago 2026', title: 'Día de la Niñez junto al Club Atlético Los Andes', src: 'uploads/1755540481884.jfif', paras: [
+      { date: '16 ago 2026', title: 'Día de la Niñez junto al Club Atlético Los Andes', src: 'uploads/1755540481884.jpg', paras: [
         'En el Día de la Niñez acompañamos al Club Atlético Los Andes en un festejo lleno de alegría, juegos y sonrisas.',
         'Desde Sur Finanzas creemos en la importancia de estar presentes en cada barrio, generando acciones que fortalezcan el tejido social y acerquen oportunidades.',
         'Gracias al presidente del club, Omar Plaini, y a la ministra de Ambiente, Daniela Vilar, por compartir este encuentro donde quedó demostrado que cuando el Estado, las instituciones y el sector privado trabajamos juntos, las cosas buenas suceden.'
       ], imgPlaceholder: 'imagen de post: Día de la Niñez' },
-      { date: 'oct 2025', title: 'Speaker en el Congreso Latinoamericano de SportBiz, Lima', src: 'uploads/Speaker.jfif', paras: [
+      { date: 'oct 2025', title: 'Speaker en el Congreso Latinoamericano de SportBiz, Lima', src: 'uploads/Speaker.jpg', paras: [
         'Un verdadero honor haber sido speaker en el Congreso Latinoamericano de SportBiz en Lima, Perú 🇵🇪.',
         'Gracias a la Liga Profesional de Fútbol Argentino por hacer posible esta experiencia, permitiéndome compartir una visión desde el lado de Sur Finanzas Group como sponsor y como un caso de éxito en la industria.',
         'Seguimos apostando al crecimiento del ecosistema deportivo desde la innovación y el compromiso.'
       ], imgPlaceholder: 'imagen de post: congreso SportBiz' },
-      { date: '6 jul 2025', title: 'Vélez, campeón del Torneo Proyección Sur Finanzas Apertura 2025', src: 'uploads/FinalTorneo.jfif', paras: [
+      { date: '6 jul 2025', title: 'Vélez, campeón del Torneo Proyección Sur Finanzas Apertura 2025', src: 'uploads/FinalTorneo.jpg', paras: [
         '¡Felicitaciones para Vélez, campeón del Torneo Proyección Sur Finanzas Apertura 2025!',
         'Gran campaña de la Reserva del Fortín para quedarse con un nuevo título.',
         'Desde Sur Finanzas estamos orgullosos de ser sponsor oficial y seguir cerca del fútbol argentino en cada instante.'
@@ -760,16 +820,35 @@ class Component extends DCLogic {
     const reelMuteStyle = `position:absolute;right:12px;bottom:14px;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;color:#08110F;background:rgba(255,255,255,0.86);border:1px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,0.6);transition:background 0.18s ease,border-color 0.18s ease`;
     const reelToggleMute = () => {
       this.pendingUnmute = false;
-      this.userSetMute = this.state.reelMuted === false; // pasa a mudo por decisión propia
+      const willMute = this.state.reelMuted === false;
+      this.userSetMute = willMute; // pasa a mudo por decisión propia
+      // Tocar el <video> real en el mismo tick del click, no sólo vía
+      // setState — mismo motivo que en reelTogglePause más abajo.
+      const v = this.getActiveReelVideo && this.getActiveReelVideo();
+      if (v) {
+        v.muted = !willMute;
+        if (!willMute) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      }
       this.setState(st => ({ reelMuted: !st.reelMuted }));
     };
     // Tap sobre el video: primero habilita el sonido si quedó bloqueado,
     // después alterna pausa / reproducción.
     const reelTogglePause = () => {
+      const v = this.getActiveReelVideo && this.getActiveReelVideo();
       if (this.pendingUnmute && !this.userSetMute) {
         this.pendingUnmute = false;
+        // Desmutear de forma SÍNCRONA dentro del click: es la única manera
+        // fiable de que Safari conceda el permiso de audio. Antes esto sólo
+        // pasaba por setState, cuyo re-render puede quedar fuera de la
+        // ventana del gesto según cómo lo agende el framework, y el video
+        // se quedaba mudo para siempre aunque el usuario tocara la pantalla.
+        if (v) { v.muted = false; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
         this.setState({ reelMuted: false, reelPaused: false });
         return;
+      }
+      if (v) {
+        if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else v.pause();
       }
       this.setState(st => ({ reelPaused: !st.reelPaused }));
     };
@@ -805,12 +884,8 @@ class Component extends DCLogic {
     const statsWrapStyle = `display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px`;
     const canalVisible = !!this.state.blocksVisible['canal'];
     const canalStyle = `position:relative;overflow:hidden;background:linear-gradient(150deg,#17211F 0%,#0F1517 60%);border:1px solid rgba(46,230,184,0.28);border-radius:28px;padding:48px 44px;box-shadow:0 40px 90px -50px rgba(46,230,184,0.5);opacity:${canalVisible ? 1 : 0};transform:translateY(${canalVisible ? 0 : 18}px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
-    const canalTags = ['Finanzas', 'Inversiones', 'Divisas extranjeras', 'Transporte de caudales'].map((label, i) => ({ label, style: `font-size:14px;font-weight:400;color:#A3B1B5;letter-spacing:0.01em;${i === 0 ? '' : 'border-left:1px solid rgba(46,230,184,0.28);padding-left:14px;'}` }));
-    const heroWordList = ['Papá y amigo', 'Palabra y compromiso', 'Cercano al barrio', 'Finanzas con propósito'];
-    const heroWords = heroWordList.map((label, i) => {
-      const on = i === this.state.heroWordIdx % heroWordList.length;
-      return { label, style: `position:absolute;left:0;top:0;display:block;width:100%;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.01em;color:#C6D2D4;white-space:nowrap;line-height:22px;opacity:${on ? 1 : 0};transform:translateY(${on ? 0 : 8}px);transition:opacity 0.45s ease,transform 0.45s cubic-bezier(.16,1,.3,1)` };
-    });
+    const canalTags = ['Finanzas', 'Inversiones', 'Divisas extranjeras', 'Transporte de caudales'].map((label) => ({ label }));
+    const heroTypeText = this.state.heroTypeText;
     const contactoVisible = !!this.state.blocksVisible['contacto'];
     const contactoStyle = `position:relative;background:linear-gradient(158deg,#161E20 0%,#0F1517 100%);border:1px solid rgba(46,230,184,0.2);border-radius:24px;padding:64px 48px;box-shadow:0 0 60px -25px rgba(46,230,184,0.25);opacity:${contactoVisible ? 1 : 0};transform:translateY(${contactoVisible ? 0 : 18}px) scale(${contactoVisible ? 1 : 0.99});transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
     const contactoItem = () => ''; // el escalonado lo maneja .stagger en CSS
@@ -843,7 +918,7 @@ class Component extends DCLogic {
     const promoNameStyle = `font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:${isDark ? '#2EE6B8' : '#08110F'};transition:color 0.88s ease`;
     const promoBadgeStyle = `width:15px;height:15px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:${isDark ? '#2EE6B8' : '#08110F'};color:${isDark ? '#08110F' : '#2EE6B8'};transition:background 0.88s ease,color 0.88s ease`;
     const promoRoleStyle = `font-family:'Inter',sans-serif;font-weight:400;font-size:12.5px;color:${isDark ? 'rgba(255,255,255,0.75)' : 'rgba(8,17,15,0.7)'};transition:color 0.88s ease`;
-    const nameLetters = 'Ariel Vallejos'.split('').map((ch, i) => ({
+    const nameLetters = 'Ariel Vallejo'.split('').map((ch, i) => ({
       ch: ch === ' ' ? '\u00A0' : ch,
       style: `display:inline-block;opacity:0;animation:letterIn 0.33s cubic-bezier(.16,1,.3,1) forwards;animation-delay:${(0.15 + i * 0.035).toFixed(2)}s`,
     }));
@@ -851,7 +926,7 @@ class Component extends DCLogic {
     const heroCardStyle = `position:relative;max-width:920px;width:100%;background:linear-gradient(158deg,#161E20 0%,#0F1517 100%);border:1px solid rgba(46,230,184,0.15);border-radius:28px;padding:56px 64px;box-shadow:0 0 0 1px rgba(46,230,184,0.05),0 40px 100px -30px rgba(46,230,184,0.15),0 0 60px -20px rgba(46,230,184,0.2);transform:perspective(1000px) rotateX(${this.state.tiltY}deg) rotateY(${this.state.tiltX}deg);transition:transform 0.18s ease-out`;
     const statusText = isOpenNow ? 'Abierto ahora' : 'Cerrado ahora';
     const statusStyle = `color:${isOpenNow ? '#2EE6B8' : '#FF5C5C'};font-weight:500`;
-    return { stats, experience, services, hours, statusText, statusStyle, contactoItemStyle0, contactoItemStyle1, contactoItemStyle2, contactoItemStyle3, contactoItemStyle4, contactoItemStyle5, promoBarStyle, promoNameStyle, promoBadgeStyle, promoRoleStyle, nameLetters, phoneDisplay, heroCardStyle, heroMouseMove: this.heroMouseMove, heroMouseLeave: this.heroMouseLeave, particles, soyTextStyle: soyStyle, posts, gallery, preloaderStyle, parallaxStyle1, parallaxStyle2, parallaxStyle3, navDots, backToTopStyle, scrollProgress: this.state.scrollProgress, scrollToTop: () => this.scrollToY(0, true), headResultadosStyle, headExperienciaStyle, headServiciosStyle, headNovedadesStyle, headGaleriaStyle, statsWrapStyle, contactoStyle, canalStyle, canalTags, heroWords, reelMuted, reelUnmuted, reelMuteStyle, reelToggleMute, reelTogglePause, reelPauseIconStyle, reelsWrapStyle, reelFrameStyle, reelTrackStyle, reelPrevStyle, reelNextStyle, reelPrev, reelNext, reelDots };
+    return { stats, experience, services, hours, statusText, statusStyle, contactoItemStyle0, contactoItemStyle1, contactoItemStyle2, contactoItemStyle3, contactoItemStyle4, contactoItemStyle5, promoBarStyle, promoNameStyle, promoBadgeStyle, promoRoleStyle, nameLetters, phoneDisplay, heroCardStyle, heroMouseMove: this.heroMouseMove, heroMouseLeave: this.heroMouseLeave, particles, soyTextStyle: soyStyle, posts, gallery, preloaderStyle, parallaxStyle1, parallaxStyle2, parallaxStyle3, navDots, backToTopStyle, scrollProgress: this.state.scrollProgress, scrollToTop: () => this.scrollToY(0, true), headResultadosStyle, headExperienciaStyle, headServiciosStyle, headNovedadesStyle, headGaleriaStyle, statsWrapStyle, contactoStyle, canalStyle, canalTags, heroTypeText, reelMuted, reelUnmuted, reelMuteStyle, reelToggleMute, reelTogglePause, reelPauseIconStyle, reelsWrapStyle, reelFrameStyle, reelTrackStyle, reelPrevStyle, reelNextStyle, reelPrev, reelNext, reelDots };
   }
 }
 </script>

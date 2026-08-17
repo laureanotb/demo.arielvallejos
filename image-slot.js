@@ -335,6 +335,12 @@
     '  opacity:.35;transition:border-color .12s,opacity .12s}' +
     ':host([data-over]) .ring{border-color:#c96442;opacity:1}' +
     ':host([data-filled]) .ring{display:none}' +
+    // El anillo punteado es chrome del EDITOR (marca la zona de drop). En una
+    // pagina publicada fuera del editor (sin window.omelette) data-editable
+    // nunca esta presente, asi que el anillo no debe mostrarse nunca ahi —
+    // sin esto, una imagen podia parpadear con un borde punteado ("crackeado")
+    // hasta el primer re-render (hover/click) que recien entonces lo ocultaba.
+    ':host(:not([data-editable])) .ring{display:none}' +
     // Controls overlay INSIDE the frame, pinned to the top-right corner, so
     // a full-bleed slot in an overflow:hidden container still shows them
     // (the old below-mask placement got clipped). Credit sits bottom-left,
