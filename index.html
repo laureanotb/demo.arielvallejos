@@ -275,7 +275,7 @@ a:hover{color:#5EFFD4}
   </section>
 
   <section id="video-destacado" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px;display:flex;justify-content:center">
-    <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;contain:paint;clip-path:inset(0 round 26px);-webkit-mask-image:-webkit-linear-gradient(white,white);background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset;cursor:pointer">
+    <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:88%;max-width:392px;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset;cursor:pointer">
       <video data-solo-video src="uploads/-3319039138483962627.mp4" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
       <div style="{{ soloPauseIconStyle }}">
         <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
@@ -344,32 +344,6 @@ a:hover{color:#5EFFD4}
 
   <div style="position:relative;height:48px;margin:-28px 0;overflow:hidden;z-index:1;pointer-events:none"><div style="position:absolute;left:50%;top:-140%;width:160%;height:200px;transform:translateX(-50%);border-radius:50%;border-top:1px solid rgba(46,230,184,0.12)"></div></div>
 
-  <section id="servicios" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px">
-    <div class="sec-head" data-anim="head-servicios" style="{{ headServiciosStyle }}">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#2EE6B8">Cómo puedo ayudarte</span>
-        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(46,230,184,0.35),rgba(46,230,184,0))"></span>
-      </div>
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,3.4vw,36px);color:#fff;margin:0 0 12px;letter-spacing:-0.02em;line-height:1.15">Servicios y asesorías</h2>
-      <p style="font-weight:300;font-size:16px;line-height:1.6;color:#A3B1B5;margin:0 0 44px;max-width:56ch;text-wrap:pretty">Trabajo con fundadores y equipos directivos que necesitan claridad financiera.</p>
-    </div>
-    <div class="stagger" data-anim="servicios" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="3">
-        <div style="{{ sv.cardStyle }}" style-hover="transform:translateY(-6px);border-color:rgba(46,230,184,0.42);box-shadow:0 24px 50px -26px rgba(46,230,184,0.5)">
-          <div style="width:44px;height:44px;border-radius:12px;background:rgba(46,230,184,0.12);border:1px solid rgba(46,230,184,0.25);margin-bottom:20px;display:flex;align-items:center;justify-content:center">
-            <sc-if value="{{ sv.isBars }}"><div style="display:flex;align-items:flex-end;gap:3px"><span style="width:4px;height:8px;background:#2EE6B8;opacity:.5;border-radius:1px"></span><span style="width:4px;height:14px;background:#2EE6B8;opacity:.75;border-radius:1px"></span><span style="width:4px;height:19px;background:#2EE6B8;border-radius:1px"></span></div></sc-if>
-            <sc-if value="{{ sv.isRing }}"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #2EE6B8"></span></sc-if>
-            <sc-if value="{{ sv.isDots }}"><div style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#2EE6B8"></span><span style="width:6px;height:6px;border-radius:50%;background:#2EE6B8;opacity:.6"></span><span style="width:6px;height:6px;border-radius:50%;background:#2EE6B8;opacity:.3"></span></div></sc-if>
-          </div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:#fff;margin-bottom:10px">{{ sv.title }}</div>
-          <div style="font-weight:300;font-size:15px;color:#A3B1B5;line-height:1.6">{{ sv.desc }}</div>
-        </div>
-      </sc-for>
-    </div>
-  </section>
-
-  <div style="position:relative;height:48px;margin:-28px 0;overflow:hidden;z-index:1;pointer-events:none"><div style="position:absolute;left:50%;top:-140%;width:160%;height:200px;transform:translateX(-50%);border-radius:50%;border-top:1px solid rgba(46,230,184,0.12)"></div></div>
-
   <section id="novedades" data-anim="posts" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px">
     <div class="sec-head" data-anim="head-novedades" style="{{ headNovedadesStyle }}">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
@@ -390,6 +364,32 @@ a:hover{color:#5EFFD4}
           <sc-for list="{{ post.paras }}" as="pa" hint-placeholder-count="1">
             <div style="font-weight:300;font-size:15px;color:#A3B1B5;line-height:1.65;margin-bottom:10px;text-wrap:pretty">{{ pa.text }}</div>
           </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="position:relative;height:48px;margin:-28px 0;overflow:hidden;z-index:1;pointer-events:none"><div style="position:absolute;left:50%;top:-140%;width:160%;height:200px;transform:translateX(-50%);border-radius:50%;border-top:1px solid rgba(46,230,184,0.12)"></div></div>
+
+  <section id="servicios" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px">
+    <div class="sec-head" data-anim="head-servicios" style="{{ headServiciosStyle }}">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#2EE6B8">Cómo puedo ayudarte</span>
+        <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(46,230,184,0.35),rgba(46,230,184,0))"></span>
+      </div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,3.4vw,36px);color:#fff;margin:0 0 12px;letter-spacing:-0.02em;line-height:1.15">Servicios y asesorías</h2>
+      <p style="font-weight:300;font-size:16px;line-height:1.6;color:#A3B1B5;margin:0 0 44px;max-width:56ch;text-wrap:pretty">Trabajo con fundadores y equipos directivos que necesitan claridad financiera.</p>
+    </div>
+    <div class="stagger" data-anim="servicios" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="3">
+        <div style="{{ sv.cardStyle }}" style-hover="transform:translateY(-6px);border-color:rgba(46,230,184,0.42);box-shadow:0 24px 50px -26px rgba(46,230,184,0.5)">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(46,230,184,0.12);border:1px solid rgba(46,230,184,0.25);margin-bottom:20px;display:flex;align-items:center;justify-content:center">
+            <sc-if value="{{ sv.isBars }}"><div style="display:flex;align-items:flex-end;gap:3px"><span style="width:4px;height:8px;background:#2EE6B8;opacity:.5;border-radius:1px"></span><span style="width:4px;height:14px;background:#2EE6B8;opacity:.75;border-radius:1px"></span><span style="width:4px;height:19px;background:#2EE6B8;border-radius:1px"></span></div></sc-if>
+            <sc-if value="{{ sv.isRing }}"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #2EE6B8"></span></sc-if>
+            <sc-if value="{{ sv.isDots }}"><div style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#2EE6B8"></span><span style="width:6px;height:6px;border-radius:50%;background:#2EE6B8;opacity:.6"></span><span style="width:6px;height:6px;border-radius:50%;background:#2EE6B8;opacity:.3"></span></div></sc-if>
+          </div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:#fff;margin-bottom:10px">{{ sv.title }}</div>
+          <div style="font-weight:300;font-size:15px;color:#A3B1B5;line-height:1.6">{{ sv.desc }}</div>
         </div>
       </sc-for>
     </div>
@@ -510,8 +510,8 @@ class Component extends DCLogic {
   heroPhrases = ['Papá y amigo', 'Palabra y compromiso', 'Cercano al barrio', 'Finanzas con propósito'];
   taglineFull = 'Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.';
   phoneFull = '+54 9 11 5175-8481';
-  sectionIds = ['hero', 'sobre-mi', 'resultados', 'experiencia', 'servicios', 'novedades', 'galeria', 'canal', 'contacto'];
-  sectionLabels = ['Inicio', 'Quién soy', 'Presencia', 'Liderazgo', 'Servicios', 'Novedades', 'Reels', 'Canal', 'Contacto'];
+  sectionIds = ['hero', 'sobre-mi', 'resultados', 'experiencia', 'novedades', 'servicios', 'galeria', 'canal', 'contacto'];
+  sectionLabels = ['Inicio', 'Quién soy', 'Presencia', 'Liderazgo', 'Novedades', 'Servicios', 'Reels', 'Canal', 'Contacto'];
 
   componentDidMount() {
     this.preloadTimer = setTimeout(() => this.setState({ loading: false }), 700);
@@ -1051,7 +1051,7 @@ class Component extends DCLogic {
     const soloPauseIconStyle = `position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;background:rgba(255,255,255,0.9);box-shadow:0 10px 30px -8px rgba(0,0,0,0.65);opacity:${showSoloPauseIcon ? 1 : 0};transform:scale(${showSoloPauseIcon ? 1 : 0.7});transition:opacity 0.2s ease,transform 0.2s cubic-bezier(.16,1,.3,1)`;
     const reelsVisible = !!this.state.blocksVisible['reels'];
     const reelsWrapStyle = `display:flex;flex-direction:column;align-items:center;opacity:${reelsVisible ? 1 : 0};transform:translateY(${reelsVisible ? 0 : 18}px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
-    const reelFrameStyle = 'position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;contain:paint;clip-path:inset(0 round 26px);-webkit-mask-image:-webkit-linear-gradient(white,white);background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset';
+    const reelFrameStyle = 'position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset';
     const reelTrackStyle = `display:flex;width:100%;height:100%;transform:translateX(-${reelIdx * 100}%);transition:transform 0.55s cubic-bezier(.16,1,.3,1)`;
     const arrow = (side) => `position:absolute;${side}:12px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;color:#08110F;background:rgba(255,255,255,0.86);border:1px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,0.6);transition:background 0.18s ease,border-color 0.18s ease,transform 0.18s ease`;
     const reelPrevStyle = arrow('left');
