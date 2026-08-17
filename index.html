@@ -266,6 +266,13 @@ a:hover{color:#5EFFD4}
     </div>
   </section>
 
+  <div style="position:relative;z-index:1;display:flex;justify-content:center;padding:16px 32px 0">
+    <div style="position:relative;display:inline-flex;align-items:center;gap:9px;max-width:88vw;padding:9px 20px 9px 10px;border-radius:100px;background:rgba(46,230,184,0.06);border:1px solid rgba(46,230,184,0.2)">
+      <span style="width:3px;height:15px;border-radius:2px;background:#2EE6B8;flex:none;box-shadow:0 0 8px rgba(46,230,184,0.6)"></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13.5px;letter-spacing:0.01em;color:#C6D2D4;white-space:nowrap;overflow:hidden;text-overflow:clip;max-width:60vw">{{ midTypeText }}</span>
+    </div>
+  </div>
+
   <section id="sobre-mi" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:120px 32px;display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start">
     <image-slot id="avatar" shape="rounded" radius="24" src="uploads/e86b7440-9a6b-4fdd-ba4a-0c71540f1b07.jpg" placeholder="foto de Ariel Vallejo" style="width:100%;height:340px;position:sticky;top:80px"></image-slot>
     <div class="sec-head" data-anim="soy" style="{{ soyTextStyle }}">
@@ -511,7 +518,7 @@ a:hover{color:#5EFFD4}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroTypeText: '', loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0, canalTagIdx: 0, soloInView: false, soloPaused: false, soloMuted: true };
+  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroTypeText: '', loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0, canalTagIdx: 0, soloInView: false, soloPaused: false, soloMuted: true, midTypeText: '' };
   heroPhrases = ['Papá y amigo', 'Palabra y compromiso', 'Cercano al barrio', 'Finanzas con propósito'];
   taglineFull = 'Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.';
   phoneFull = '+54 9 11 5175-8481';
@@ -545,6 +552,32 @@ class Component extends DCLogic {
       }
     };
     this.heroTypeTimer = setTimeout(typeTick, 250);
+
+    // Segundo slider, entre el hero y "Quién soy" — mismo mecanismo, frases
+    // distintas, arranca un toque después para no tipear en perfecta
+    // sincronía con el del hero.
+    this.midPhrases = ['Te escribo yo, no un bot', 'Ayudamos a emprendedores', 'Directo a mi WhatsApp', 'Cerca tuyo, siempre'];
+    let midPhraseIdx = 0, midCharIdx = 0, midTyping = true;
+    const midTypeTick = () => {
+      const phrase = this.midPhrases[midPhraseIdx];
+      if (midTyping) {
+        midCharIdx++;
+        this.setState({ midTypeText: phrase.slice(0, midCharIdx) });
+        if (midCharIdx >= phrase.length) { midTyping = false; this.midTypeTimer = setTimeout(midTypeTick, 1100); return; }
+        this.midTypeTimer = setTimeout(midTypeTick, 62);
+      } else {
+        midCharIdx--;
+        this.setState({ midTypeText: phrase.slice(0, midCharIdx) });
+        if (midCharIdx <= 0) {
+          midTyping = true;
+          midPhraseIdx = (midPhraseIdx + 1) % this.midPhrases.length;
+          this.midTypeTimer = setTimeout(midTypeTick, 220);
+          return;
+        }
+        this.midTypeTimer = setTimeout(midTypeTick, 20);
+      }
+    };
+    this.midTypeTimer = setTimeout(midTypeTick, 900);
 
     this.headerSlideInterval = setInterval(() => this.setState(s => ({ headerSlide: (s.headerSlide + 1) % 2 })), 13000);
     // Ilumina las etiquetas del canal por turnos — no depende de :hover, así
@@ -888,6 +921,7 @@ class Component extends DCLogic {
     if (this.headerSlideInterval) clearInterval(this.headerSlideInterval);
     if (this.canalTagInterval) clearInterval(this.canalTagInterval);
     if (this.heroTypeTimer) clearTimeout(this.heroTypeTimer);
+    if (this.midTypeTimer) clearTimeout(this.midTypeTimer);
     if (this._scrollRAF) cancelAnimationFrame(this._scrollRAF);
   }
 
@@ -1098,6 +1132,7 @@ class Component extends DCLogic {
       };
     });
     const heroTypeText = this.state.heroTypeText;
+    const midTypeText = this.state.midTypeText;
     const contactoVisible = !!this.state.blocksVisible['contacto'];
     const contactoStyle = `position:relative;background:linear-gradient(158deg,#161E20 0%,#0F1517 100%);border:1px solid rgba(46,230,184,0.2);border-radius:24px;padding:64px 48px;box-shadow:0 0 60px -25px rgba(46,230,184,0.25);opacity:${contactoVisible ? 1 : 0};transform:translateY(${contactoVisible ? 0 : 18}px) scale(${contactoVisible ? 1 : 0.99});transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
     const contactoItem = () => ''; // el escalonado lo maneja .stagger en CSS
@@ -1138,7 +1173,7 @@ class Component extends DCLogic {
     const heroCardStyle = `position:relative;max-width:920px;width:100%;background:linear-gradient(158deg,#161E20 0%,#0F1517 100%);border:1px solid rgba(46,230,184,0.15);border-radius:28px;padding:56px 64px;box-shadow:0 0 0 1px rgba(46,230,184,0.05),0 40px 100px -30px rgba(46,230,184,0.15),0 0 60px -20px rgba(46,230,184,0.2);transform:perspective(1000px) rotateX(${this.state.tiltY}deg) rotateY(${this.state.tiltX}deg);transition:transform 0.18s ease-out`;
     const statusText = isOpenNow ? 'Abierto ahora' : 'Cerrado ahora';
     const statusStyle = `color:${isOpenNow ? '#2EE6B8' : '#FF5C5C'};font-weight:500`;
-    return { stats, experience, services, hours, statusText, statusStyle, contactoItemStyle0, contactoItemStyle1, contactoItemStyle2, contactoItemStyle3, contactoItemStyle4, contactoItemStyle5, promoBarStyle, promoNameStyle, promoBadgeStyle, promoRoleStyle, nameLetters, phoneDisplay, heroCardStyle, heroMouseMove: this.heroMouseMove, heroMouseLeave: this.heroMouseLeave, particles, soyTextStyle: soyStyle, posts, gallery, preloaderStyle, parallaxStyle1, parallaxStyle2, parallaxStyle3, navDots, backToTopStyle, scrollProgress: this.state.scrollProgress, scrollToTop: () => this.scrollToY(0, true), headResultadosStyle, headExperienciaStyle, headServiciosStyle, headNovedadesStyle, headGaleriaStyle, statsWrapStyle, contactoStyle, canalStyle, canalTags, heroTypeText, reelMuted, reelUnmuted, reelMuteStyle, reelToggleMute, reelTogglePause, reelPauseIconStyle, reelsWrapStyle, reelFrameStyle, reelTrackStyle, reelPrevStyle, reelNextStyle, reelPrev, reelNext, reelDots, soloMuted, soloUnmuted, soloMuteStyle, soloToggleMute, soloTogglePause, soloPauseIconStyle };
+    return { stats, experience, services, hours, statusText, statusStyle, contactoItemStyle0, contactoItemStyle1, contactoItemStyle2, contactoItemStyle3, contactoItemStyle4, contactoItemStyle5, promoBarStyle, promoNameStyle, promoBadgeStyle, promoRoleStyle, nameLetters, phoneDisplay, heroCardStyle, heroMouseMove: this.heroMouseMove, heroMouseLeave: this.heroMouseLeave, particles, soyTextStyle: soyStyle, posts, gallery, preloaderStyle, parallaxStyle1, parallaxStyle2, parallaxStyle3, navDots, backToTopStyle, scrollProgress: this.state.scrollProgress, scrollToTop: () => this.scrollToY(0, true), headResultadosStyle, headExperienciaStyle, headServiciosStyle, headNovedadesStyle, headGaleriaStyle, statsWrapStyle, contactoStyle, canalStyle, canalTags, heroTypeText, midTypeText, reelMuted, reelUnmuted, reelMuteStyle, reelToggleMute, reelTogglePause, reelPauseIconStyle, reelsWrapStyle, reelFrameStyle, reelTrackStyle, reelPrevStyle, reelNextStyle, reelPrev, reelNext, reelDots, soloMuted, soloUnmuted, soloMuteStyle, soloToggleMute, soloTogglePause, soloPauseIconStyle };
   }
 }
 </script>
