@@ -275,7 +275,7 @@ a:hover{color:#5EFFD4}
   </section>
 
   <section id="video-destacado" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px;display:flex;justify-content:center">
-    <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset;cursor:pointer">
+    <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;contain:paint;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset;cursor:pointer">
       <video data-solo-video src="uploads/-3319039138483962627.mp4" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
       <div style="{{ soloPauseIconStyle }}">
         <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
@@ -1051,7 +1051,7 @@ class Component extends DCLogic {
     const soloPauseIconStyle = `position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;background:rgba(255,255,255,0.9);box-shadow:0 10px 30px -8px rgba(0,0,0,0.65);opacity:${showSoloPauseIcon ? 1 : 0};transform:scale(${showSoloPauseIcon ? 1 : 0.7});transition:opacity 0.2s ease,transform 0.2s cubic-bezier(.16,1,.3,1)`;
     const reelsVisible = !!this.state.blocksVisible['reels'];
     const reelsWrapStyle = `display:flex;flex-direction:column;align-items:center;opacity:${reelsVisible ? 1 : 0};transform:translateY(${reelsVisible ? 0 : 18}px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
-    const reelFrameStyle = 'position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset';
+    const reelFrameStyle = 'position:relative;width:min(88vw,calc(78vh * 9 / 16),392px);aspect-ratio:9/16;border-radius:26px;overflow:hidden;contain:paint;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset';
     const reelTrackStyle = `display:flex;width:100%;height:100%;transform:translateX(-${reelIdx * 100}%);transition:transform 0.55s cubic-bezier(.16,1,.3,1)`;
     const arrow = (side) => `position:absolute;${side}:12px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;color:#08110F;background:rgba(255,255,255,0.86);border:1px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(0,0,0,0.6);transition:background 0.18s ease,border-color 0.18s ease,transform 0.18s ease`;
     const reelPrevStyle = arrow('left');
