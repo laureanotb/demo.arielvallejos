@@ -281,7 +281,7 @@ a:hover{color:#5EFFD4}
 
   <section id="video-destacado" style="position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 32px 120px;display:flex;justify-content:center">
     <div data-solo-frame onClick="{{ soloTogglePause }}" style="position:relative;width:88%;max-width:392px;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#0D1314;border:1px solid rgba(46,230,184,0.22);box-shadow:0 40px 90px -40px rgba(46,230,184,0.45),0 0 0 1px rgba(255,255,255,0.03) inset;cursor:pointer">
-      <video data-solo-video data-src="uploads/-3319039138483962627.mp4" loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
+      <video data-solo-video src="uploads/-3319039138483962627.mp4" loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none"></video>
       <div style="{{ soloPauseIconStyle }}">
         <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
       </div>
@@ -759,26 +759,8 @@ class Component extends DCLogic {
       this.soloObserver.observe(frame);
     };
 
-    // El <video> arranca SIN src (data-src la guarda). Recién se le asigna
-    // el src cuando está por entrar en pantalla (con margen de anticipo),
-    // así no hay absolutamente ningún contenido de video para que el
-    // navegador pinte de forma incorrecta mientras el usuario todavía está
-    // leyendo el texto de la sección anterior.
-    this.setupSoloLazyLoad = () => {
-      const video = document.querySelector('[data-solo-video]');
-      if (!video || !video.dataset.src) return;
-      const load = () => { video.src = video.dataset.src; delete video.dataset.src; };
-      if (!('IntersectionObserver' in window)) { load(); return; }
-      const lazyObserver = new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-          if (en.isIntersecting) { load(); lazyObserver.disconnect(); }
-        });
-      }, { rootMargin: '600px 0px' });
-      lazyObserver.observe(video);
-    };
-
     this.checkVisibility();
-    setTimeout(() => { this.setupReelObserver(); this.setupSoloObserver(); this.setupSoloLazyLoad(); this.syncReels(); this.syncSolo(); }, 300);
+    setTimeout(() => { this.setupReelObserver(); this.setupSoloObserver(); this.syncReels(); this.syncSolo(); }, 300);
   }
 
   syncReels() {
