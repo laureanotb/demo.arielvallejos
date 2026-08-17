@@ -146,7 +146,12 @@ a:hover{color:#5EFFD4}
   .hero-wa-top{display:none !important}
   .hero-wa-mobile{display:inline-flex !important;margin:2px 0 20px}
   #sobre-mi{grid-template-columns:1fr !important;gap:28px !important;padding:72px 18px !important}
-  #sobre-mi>image-slot{height:300px !important;max-width:340px;margin:0 auto;display:block;position:static !important}
+  /* position:relative (no "static"): el componente interno de la foto usa
+     posicionamiento absoluto con porcentajes que dependen de que el propio
+     elemento host siga siendo un "contenedor de referencia" válido. Ponerlo
+     en static rompía esa cadena y la imagen interna se estiraba contra todo
+     el body (era ESTE el bug del "fondo gigante", no el video). */
+  #sobre-mi>image-slot{height:300px !important;max-width:340px;margin:0 auto;display:block;position:relative !important}
   #resultados,#experiencia,#servicios,#novedades,#galeria,#canal{padding-left:18px !important;padding-right:18px !important;padding-bottom:80px !important}
   #canal>div{padding:34px 22px !important}
   #contacto{padding-left:18px !important;padding-right:18px !important;padding-bottom:96px !important}
