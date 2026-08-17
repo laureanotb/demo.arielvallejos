@@ -640,7 +640,7 @@ class Component extends DCLogic {
       if (soloFrame) {
         const sr = soloFrame.getBoundingClientRect();
         const shown = Math.min(sr.bottom, vh) - Math.max(sr.top, 0);
-        soloInView = sr.height > 0 && shown >= sr.height * 0.5;
+        soloInView = sr.height > 0 && shown >= sr.height * 0.15;
       }
       const patch = { scrollProgress: progress, activeSection: active, showBackToTop: scrollY > 400, parallaxY: scrollY };
       if (reelsInView !== this.state.reelsInView) {
@@ -746,7 +746,11 @@ class Component extends DCLogic {
       if (!frame) return;
       this.soloObserver = new IntersectionObserver((entries) => {
         entries.forEach((en) => {
-          const inView = en.isIntersecting && en.intersectionRatio >= 0.5;
+          // Umbral bajo (15%) a propósito: el marco es oscuro (#0D1314, casi
+          // igual al fondo de la página) y hasta que el video no arranca a
+          // reproducir se ve como si "no estuviera" — con 50% había que
+          // scrollear casi hasta la mitad del bloque para que se notara.
+          const inView = en.isIntersecting && en.intersectionRatio >= 0.15;
           if (inView === this.state.soloInView) return;
           const patch = { soloInView: inView };
           if (inView) {
@@ -755,7 +759,7 @@ class Component extends DCLogic {
           }
           this.setState(patch);
         });
-      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+      }, { threshold: [0, 0.15, 0.25, 0.5, 0.75, 1] });
       this.soloObserver.observe(frame);
     };
 
