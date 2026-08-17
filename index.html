@@ -475,7 +475,7 @@ class Component extends DCLogic {
     // Máquina de escribir para la frase del hero: tipea, sostiene, borra y
     // pasa a la siguiente.
     let phraseIdx = 0, charIdx = 0, typing = true;
-    const TYPE_MS = 24, DELETE_MS = 13, HOLD_MS = 950, GAP_MS = 160;
+    const TYPE_MS = 62, DELETE_MS = 20, HOLD_MS = 1100, GAP_MS = 220;
     const typeTick = () => {
       const phrase = this.heroPhrases[phraseIdx];
       if (typing) {
