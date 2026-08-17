@@ -28,7 +28,8 @@
 <script src="./image-slot.js"></script>
 <style>
 @font-face{font-family:sys;src:local(Arial)}
-html{scroll-behavior:smooth}
+/* El scroll a las secciones se anima a mano (más lento, con easing propio)
+   en vez de con el scroll-behavior nativo, así que queda en auto. */
 html,body{overflow-x:hidden}
 body{margin:0;background:#0A0F0E}
 a{color:#2EE6B8;text-decoration:none}
@@ -91,6 +92,13 @@ a:hover{color:#5EFFD4}
 .tag-item i{position:absolute;left:0;bottom:0;height:1px;width:100%;background:#2EE6B8;transform-origin:left}
 .tag-item:hover{color:#2EE6B8 !important;text-shadow:0 0 12px rgba(46,230,184,0.55) !important}
 .tag-item:hover i{transform:scaleX(1) !important}
+
+/* Feedback táctil al tocar botones: :active funciona en mobile (a
+   diferencia de :hover). Usa filter en vez de transform para no pelear
+   con la regla :hover !important que este framework autogenera desde
+   style-hover. */
+.btn-tap{transition:transform .15s cubic-bezier(.34,1.56,.64,1),filter .15s ease}
+.btn-tap:active{transform:scale(0.95);filter:brightness(0.88)}
 
 /* Accesibilidad: quien pide menos movimiento ve el contenido sin animación */
 @media (prefers-reduced-motion:reduce){
@@ -216,17 +224,17 @@ a:hover{color:#5EFFD4}
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,#2EE6B8,transparent);animation:shimmer 1.76s ease-in-out infinite"></div>
       </div>
       <div class="fu hero-cta" style="animation-delay:.7s;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px">
-        <a href="https://wa.me/5491151758481" style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15px;border-radius:100px;transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px -10px rgba(46,230,184,0.7)">Escribime por WhatsApp</a>
-        <a href="#sobre-mi" style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:transparent;border:1px solid rgba(148,163,168,0.35);color:#fff;font-weight:500;font-size:15px;border-radius:100px;transition:border-color 0.18s ease,color 0.18s ease,background 0.18s ease" style-hover="border-color:#2EE6B8;color:#2EE6B8;background:rgba(46,230,184,0.07)">Conoceme mejor</a>
+        <a href="https://wa.me/5491151758481" class="btn-tap" style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15px;border-radius:100px;transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px -10px rgba(46,230,184,0.7)">Escribime por WhatsApp</a>
+        <a href="#sobre-mi" class="btn-tap" style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:transparent;border:1px solid rgba(148,163,168,0.35);color:#fff;font-weight:500;font-size:15px;border-radius:100px;transition:border-color 0.18s ease,color 0.18s ease,background 0.18s ease" style-hover="border-color:#2EE6B8;color:#2EE6B8;background:rgba(46,230,184,0.07)">Conoceme mejor</a>
       </div>
       <div class="fu" style="animation-delay:.78s;display:flex;gap:12px;justify-content:center">
-        <a href="https://surfinanzas.com.ar/" target="_blank" rel="noopener" title="Sitio web" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
+        <a href="https://surfinanzas.com.ar/" target="_blank" rel="noopener" title="Sitio web" class="btn-tap" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
           <div style="position:relative;width:17px;height:17px;border-radius:50%;border:1.5px solid #2EE6B8"><span style="position:absolute;top:50%;left:-1px;right:-1px;height:1.5px;background:#2EE6B8;transform:translateY(-50%)"></span><span style="position:absolute;left:50%;top:-1px;bottom:-1px;width:9px;border:1.5px solid #2EE6B8;border-radius:50%;transform:translateX(-50%)"></span></div>
         </a>
-        <a href="https://www.instagram.com/arielvallejo_/" target="_blank" rel="noopener" title="Instagram" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
+        <a href="https://www.instagram.com/arielvallejo_/" target="_blank" rel="noopener" title="Instagram" class="btn-tap" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
           <div style="position:relative;width:17px;height:17px;border:1.5px solid #2EE6B8;border-radius:5px"><span style="position:absolute;top:50%;left:50%;width:7px;height:7px;border:1.5px solid #2EE6B8;border-radius:50%;transform:translate(-50%,-50%)"></span><span style="position:absolute;top:2px;right:2px;width:2px;height:2px;border-radius:50%;background:#2EE6B8"></span></div>
         </a>
-        <a href="https://www.linkedin.com/in/ariel-vallejo-40525595/" target="_blank" rel="noopener" title="LinkedIn" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#2EE6B8;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">in</a>
+        <a href="https://www.linkedin.com/in/ariel-vallejo-40525595/" target="_blank" rel="noopener" title="LinkedIn" class="btn-tap" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#2EE6B8;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">in</a>
       </div>
     </div>
   </section>
@@ -250,7 +258,7 @@ a:hover{color:#5EFFD4}
       <div style="{{ soloPauseIconStyle }}">
         <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
       </div>
-      <div onClick="{{ soloToggleMute }}" title="Sonido" style="{{ soloMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
+      <div onClick="{{ soloToggleMute }}" title="Sonido" class="btn-tap" style="{{ soloMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
         <sc-if value="{{ soloMuted }}" hint-placeholder-val="{{ true }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="m16 9 5 6"></path><path d="m21 9-5 6"></path></svg></sc-if>
         <sc-if value="{{ soloUnmuted }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 6a9 9 0 0 1 0 12"></path></svg></sc-if>
       </div>
@@ -388,14 +396,14 @@ a:hover{color:#5EFFD4}
         <div style="{{ reelPauseIconStyle }}">
           <div style="width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:21px solid #08110F;margin-left:6px"></div>
         </div>
-        <div onClick="{{ reelToggleMute }}" title="Sonido" style="{{ reelMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
+        <div onClick="{{ reelToggleMute }}" title="Sonido" class="btn-tap" style="{{ reelMuteStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
           <sc-if value="{{ reelMuted }}" hint-placeholder-val="{{ true }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="m16 9 5 6"></path><path d="m21 9-5 6"></path></svg></sc-if>
           <sc-if value="{{ reelUnmuted }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 6a9 9 0 0 1 0 12"></path></svg></sc-if>
         </div>
-        <div onClick="{{ reelPrev }}" title="Anterior" style="{{ reelPrevStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
+        <div onClick="{{ reelPrev }}" title="Anterior" class="btn-tap" style="{{ reelPrevStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
           <div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:9px solid currentColor;margin-right:2px"></div>
         </div>
-        <div onClick="{{ reelNext }}" title="Siguiente" style="{{ reelNextStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
+        <div onClick="{{ reelNext }}" title="Siguiente" class="btn-tap" style="{{ reelNextStyle }}" style-hover="background:rgba(46,230,184,0.92);border-color:#2EE6B8">
           <div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid currentColor;margin-left:2px"></div>
         </div>
       </div>
@@ -428,7 +436,7 @@ a:hover{color:#5EFFD4}
             </sc-for>
           </div>
         </div>
-        <a href="https://www.whatsapp.com/channel/0029VbDS9WW5fM5hWA2bIP2H" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15.5px;border-radius:100px;white-space:nowrap;flex:0 1 auto;justify-content:center;box-shadow:0 0 40px -12px rgba(46,230,184,0.8);transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(46,230,184,0.9)">Sumate al canal
+        <a href="https://www.whatsapp.com/channel/0029VbDS9WW5fM5hWA2bIP2H" target="_blank" rel="noopener" class="btn-tap" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15.5px;border-radius:100px;white-space:nowrap;flex:0 1 auto;justify-content:center;box-shadow:0 0 40px -12px rgba(46,230,184,0.8);transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(46,230,184,0.9)">Sumate al canal
           <span style="display:inline-flex;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid #08110F"></span>
         </a>
       </div>
@@ -452,17 +460,17 @@ a:hover{color:#5EFFD4}
       <h2 class="glow-title" style="{{ contactoItemStyle1 }};font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;color:#fff;margin:0 0 14px;letter-spacing:-0.01em">Hablemos</h2>
       <p style="{{ contactoItemStyle2 }};font-weight:300;font-size:17px;color:#A3B1B5;margin:0 0 34px;line-height:1.6">Disponible para asesorías, alianzas estratégicas y conversaciones sobre finanzas y liderazgo.</p>
       <div style="{{ contactoItemStyle3 }};display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:30px">
-        <a href="https://wa.me/5491151758481" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15px;border-radius:100px;transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(46,230,184,0.6)">Escribime por WhatsApp</a>
-        <a href="mailto:arvallejo@surfinanzas.com.ar" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;border:1px solid rgba(148,163,168,0.35);color:#fff;font-weight:500;font-size:15px;border-radius:100px;transition:border-color 0.18s ease,color 0.18s ease" style-hover="border-color:#2EE6B8;color:#2EE6B8">Mandame un mail</a>
+        <a href="https://wa.me/5491151758481" class="btn-tap" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15px;border-radius:100px;transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(46,230,184,0.6)">Escribime por WhatsApp</a>
+        <a href="mailto:arvallejo@surfinanzas.com.ar" class="btn-tap" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;border:1px solid rgba(148,163,168,0.35);color:#fff;font-weight:500;font-size:15px;border-radius:100px;transition:border-color 0.18s ease,color 0.18s ease" style-hover="border-color:#2EE6B8;color:#2EE6B8">Mandame un mail</a>
       </div>
       <div style="{{ contactoItemStyle4 }};display:flex;gap:12px;justify-content:center">
-        <a href="https://surfinanzas.com.ar/" target="_blank" rel="noopener" title="Sitio web" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
+        <a href="https://surfinanzas.com.ar/" target="_blank" rel="noopener" title="Sitio web" class="btn-tap" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
           <div style="position:relative;width:17px;height:17px;border-radius:50%;border:1.5px solid #2EE6B8"><span style="position:absolute;top:50%;left:-1px;right:-1px;height:1.5px;background:#2EE6B8;transform:translateY(-50%)"></span><span style="position:absolute;left:50%;top:-1px;bottom:-1px;width:9px;border:1.5px solid #2EE6B8;border-radius:50%;transform:translateX(-50%)"></span></div>
         </a>
-        <a href="https://www.instagram.com/arielvallejo_/" target="_blank" rel="noopener" title="Instagram" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
+        <a href="https://www.instagram.com/arielvallejo_/" target="_blank" rel="noopener" title="Instagram" class="btn-tap" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">
           <div style="position:relative;width:17px;height:17px;border:1.5px solid #2EE6B8;border-radius:5px"><span style="position:absolute;top:50%;left:50%;width:7px;height:7px;border:1.5px solid #2EE6B8;border-radius:50%;transform:translate(-50%,-50%)"></span><span style="position:absolute;top:2px;right:2px;width:2px;height:2px;border-radius:50%;background:#2EE6B8"></span></div>
         </a>
-        <a href="https://www.linkedin.com/in/ariel-vallejo-40525595/" target="_blank" rel="noopener" title="LinkedIn" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#2EE6B8;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">in</a>
+        <a href="https://www.linkedin.com/in/ariel-vallejo-40525595/" target="_blank" rel="noopener" title="LinkedIn" class="btn-tap" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(46,230,184,0.25);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#2EE6B8;transition:background 0.18s ease,border-color 0.18s ease" style-hover="background:rgba(46,230,184,0.12);border-color:#2EE6B8">in</a>
       </div>
     </div>
   </section>
@@ -670,6 +678,19 @@ class Component extends DCLogic {
     document.addEventListener('touchend', this.onFirstGesture, { passive: true });
     document.addEventListener('keydown', this.onFirstGesture, { passive: true });
 
+    // Links tipo href="#id" (p.ej. "Conoceme mejor") también pasan por el
+    // scroll animado propio, no por el salto instantáneo nativo del navegador.
+    this.onAnchorClick = (e) => {
+      const a = e.target && e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const el = id && document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      this.scrollToY(el.offsetTop, true);
+    };
+    document.addEventListener('click', this.onAnchorClick);
+
     // Detección robusta de la sección del reel. El scroll de esta página ocurre
     // sobre document.body, así que no dependemos sólo del evento 'scroll'.
     this.setupReelObserver = () => {
@@ -776,11 +797,35 @@ class Component extends DCLogic {
     return Math.max(document.documentElement.scrollTop || 0, document.body.scrollTop || 0, window.scrollY || 0);
   }
 
+  // Scroll animado a mano: el scroll-behavior:smooth nativo del navegador
+  // resuelve en una duración fija corta sin importar la distancia, así que
+  // en saltos largos (p.ej. Inicio -> Contacto) se sentía como un
+  // teletransporte. Acá la duración escala con la distancia y usa una
+  // curva easeInOutCubic, con un techo para que tampoco se sienta eterno.
   scrollToY(y, smooth) {
-    const opts = smooth ? { top: y, behavior: 'smooth' } : { top: y };
-    [window, document.documentElement, document.body].forEach(el => {
-      try { el.scrollTo ? el.scrollTo(opts) : (el.scrollTop = y); } catch (e) {}
-    });
+    if (this._scrollRAF) { cancelAnimationFrame(this._scrollRAF); this._scrollRAF = null; }
+    const apply = (top) => {
+      [document.body, document.documentElement, window].forEach(el => {
+        try { el.scrollTo ? el.scrollTo({ top }) : (el.scrollTop = top); } catch (e) {}
+      });
+    };
+    if (!smooth || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      apply(y);
+      return;
+    }
+    const startY = this.getScrollTop();
+    const delta = y - startY;
+    if (Math.abs(delta) < 1) return;
+    const duration = Math.min(1600, Math.max(600, Math.abs(delta) * 0.6));
+    const startT = performance.now();
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const step = (now) => {
+      const t = Math.min(1, (now - startT) / duration);
+      apply(startY + delta * ease(t));
+      if (t < 1) this._scrollRAF = requestAnimationFrame(step);
+      else this._scrollRAF = null;
+    };
+    this._scrollRAF = requestAnimationFrame(step);
   }
 
   startCountUp() {
@@ -802,6 +847,7 @@ class Component extends DCLogic {
     document.removeEventListener('click', this.onFirstGesture);
     document.removeEventListener('touchend', this.onFirstGesture);
     document.removeEventListener('keydown', this.onFirstGesture);
+    document.removeEventListener('click', this.onAnchorClick);
     if (this.reelObserver) { this.reelObserver.disconnect(); this.reelObserver = null; }
     if (this.soloObserver) { this.soloObserver.disconnect(); this.soloObserver = null; }
     if (this.countInterval) clearInterval(this.countInterval);
@@ -811,6 +857,7 @@ class Component extends DCLogic {
     if (this.headerSlideInterval) clearInterval(this.headerSlideInterval);
     if (this.canalTagInterval) clearInterval(this.canalTagInterval);
     if (this.heroTypeTimer) clearTimeout(this.heroTypeTimer);
+    if (this._scrollRAF) cancelAnimationFrame(this._scrollRAF);
   }
 
   scrollToSection(id) {
