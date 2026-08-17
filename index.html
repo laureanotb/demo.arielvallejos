@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
 <link rel="icon" type="image/jpeg" href="uploads/favicon-logo.jpg">
 <link rel="apple-touch-icon" href="uploads/favicon-logo.jpg">
 <title>Ariel Vallejo | Presidente &amp; CEO, Sur Finanzas Group</title>
@@ -33,7 +34,8 @@
 /* El scroll a las secciones se anima a mano (más lento, con easing propio)
    en vez de con el scroll-behavior nativo, así que queda en auto. */
 html,body{overflow-x:hidden}
-body{margin:0;background:#0A0F0E}
+body{margin:0;background:#0A0F0E;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-touch-callout:none}
+img,video,image-slot{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none}
 a{color:#2EE6B8;text-decoration:none}
 a:hover{color:#5EFFD4}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -231,7 +233,7 @@ a:hover{color:#5EFFD4}
             <span style="width:32px;height:32px;border-radius:50%;background:#2EE6B8;color:#08110F;font-size:17px;line-height:32px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;box-shadow:0 0 16px -2px rgba(46,230,184,0.7);opacity:0;animation:badgePop 0.28s cubic-bezier(.34,1.56,.64,1) .6s forwards">✓</span>
           </div>
           <div class="fu" style="animation-delay:.22s;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:21px;color:#FFFFFF;margin-bottom:14px">Presidente &amp; CEO — Sur Finanzas Group</div>
-          <div class="fu" style="animation-delay:.3s;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#fff;letter-spacing:.01em;margin-bottom:10px">{{ phoneDisplay }}</div>
+          <div class="fu" style="animation-delay:.3s;margin-bottom:10px"><a href="https://wa.me/5491151758481" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;color:#fff;letter-spacing:.01em;text-decoration:none">{{ phoneDisplay }}</a></div>
           <div class="fu" style="animation-delay:.36s;font-weight:300;font-size:15px;color:#A3B1B5;margin-bottom:20px">Francisco Seguí 776, Adrogué · <span style="{{ statusStyle }}">{{ statusText }}</span></div>
           <a href="https://wa.me/5491151758481" class="btn-tap btn-pulse hero-wa-mobile" style="align-items:center;gap:8px;padding:14px 30px;background:#2EE6B8;color:#08110F;font-weight:600;font-size:15px;border-radius:100px;transition:transform 0.18s ease,box-shadow 0.18s ease" style-hover="transform:translateY(-2px);box-shadow:0 12px 32px -10px rgba(46,230,184,0.7)">Escribime por WhatsApp</a>
           <p style="font-weight:300;font-size:17px;line-height:1.65;color:#A3B1B5;margin:0">Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.</p>
@@ -751,6 +753,26 @@ class Component extends DCLogic {
     };
     document.addEventListener('click', this.onAnchorClick);
 
+    // Si el usuario intenta scrollear a mano (touch o rueda del mouse)
+    // mientras el scroll animado de scrollToY todavía está corriendo, hay
+    // que soltar el control YA — sin esto, el rAF le "peleaba" el scroll
+    // al dedo del usuario hasta que terminaba la animación (hasta 1.6s),
+    // sintiéndose como que la página se traba y no deja scrollear.
+    this.onManualScrollIntent = () => {
+      if (this._scrollRAF) { cancelAnimationFrame(this._scrollRAF); this._scrollRAF = null; }
+    };
+    document.addEventListener('touchstart', this.onManualScrollIntent, { passive: true });
+    document.addEventListener('wheel', this.onManualScrollIntent, { passive: true });
+
+    // Bloquea el menú contextual (clic derecho -> "Guardar imagen como") y
+    // el arrastre de imágenes/videos fuera de la página. No es infalible
+    // (capturas de pantalla, DevTools, etc. siguen siendo posibles — nada
+    // en el navegador lo impide del todo), pero frena la descarga casual.
+    this.onContextMenu = (e) => e.preventDefault();
+    this.onDragStart = (e) => { if (e.target.closest('img,video,image-slot')) e.preventDefault(); };
+    document.addEventListener('contextmenu', this.onContextMenu);
+    document.addEventListener('dragstart', this.onDragStart);
+
     // Detección robusta de la sección del reel. El scroll de esta página ocurre
     // sobre document.body, así que no dependemos sólo del evento 'scroll'.
     this.setupReelObserver = () => {
@@ -912,6 +934,10 @@ class Component extends DCLogic {
     document.removeEventListener('touchend', this.onFirstGesture);
     document.removeEventListener('keydown', this.onFirstGesture);
     document.removeEventListener('click', this.onAnchorClick);
+    document.removeEventListener('touchstart', this.onManualScrollIntent);
+    document.removeEventListener('wheel', this.onManualScrollIntent);
+    document.removeEventListener('contextmenu', this.onContextMenu);
+    document.removeEventListener('dragstart', this.onDragStart);
     if (this.reelObserver) { this.reelObserver.disconnect(); this.reelObserver = null; }
     if (this.soloObserver) { this.soloObserver.disconnect(); this.soloObserver = null; }
     if (this.countInterval) clearInterval(this.countInterval);
