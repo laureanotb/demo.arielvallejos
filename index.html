@@ -84,12 +84,13 @@ a:hover{color:#5EFFD4}
    porque un animation inline pisaría la animación de entrada) */
 .stagger[data-shown="1"]>.glow-title{animation:cardIn var(--dur) var(--ease) both,nameGlow 1.93s ease-in-out 1.1s infinite}
 
-/* Etiquetas del canal: label editorial con subrayado que se dibuja al pasar
-   el mouse, en vez del pill+puntito genérico. */
-.tag-item{position:relative;display:inline-block;padding-bottom:4px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8FA3A7;cursor:default;transition:color .22s ease}
-.tag-item i{position:absolute;left:0;bottom:0;height:1px;width:100%;background:#2EE6B8;transform:scaleX(0);transform-origin:left;transition:transform .32s var(--ease)}
-.tag-item:hover{color:#2EE6B8}
-.tag-item:hover i{transform:scaleX(1)}
+/* Etiquetas del canal: label editorial con subrayado. Se iluminan solas por
+   turnos (funciona igual en mobile, donde no existe :hover real) y además
+   responden al mouse en desktop como bonus. */
+.tag-item{position:relative;display:inline-block;padding-bottom:4px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;cursor:default}
+.tag-item i{position:absolute;left:0;bottom:0;height:1px;width:100%;background:#2EE6B8;transform-origin:left}
+.tag-item:hover{color:#2EE6B8 !important;text-shadow:0 0 12px rgba(46,230,184,0.55) !important}
+.tag-item:hover i{transform:scaleX(1) !important}
 
 /* Accesibilidad: quien pide menos movimiento ve el contenido sin animación */
 @media (prefers-reduced-motion:reduce){
@@ -410,7 +411,7 @@ a:hover{color:#5EFFD4}
           <p style="font-weight:300;font-size:16.5px;line-height:1.7;color:#A3B1B5;margin:0 0 18px;max-width:62ch;text-wrap:pretty">Unite al canal oficial de Ariel Vallejo y accedé a contenido exclusivo sobre finanzas, inversiones, divisas extranjeras y transporte de caudales. Aprendé, crecé y tomá mejores decisiones financieras junto a nosotros.</p>
           <div class="stagger" data-anim="canal-tags" style="display:flex;flex-wrap:wrap;gap:22px 26px">
             <sc-for list="{{ canalTags }}" as="t" hint-placeholder-count="4">
-              <span class="tag-item">{{ t.label }}<i></i></span>
+              <span class="tag-item" style="{{ t.style }}">{{ t.label }}<i style="{{ t.underlineStyle }}"></i></span>
             </sc-for>
           </div>
         </div>
@@ -462,7 +463,7 @@ a:hover{color:#5EFFD4}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroTypeText: '', loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0 };
+  state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroTypeText: '', loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0, canalTagIdx: 0 };
   heroPhrases = ['Papá y amigo', 'Palabra y compromiso', 'Cercano al barrio', 'Finanzas con propósito'];
   taglineFull = 'Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.';
   phoneFull = '+54 9 11 5175-8481';
@@ -498,6 +499,9 @@ class Component extends DCLogic {
     this.heroTypeTimer = setTimeout(typeTick, 250);
 
     this.headerSlideInterval = setInterval(() => this.setState(s => ({ headerSlide: (s.headerSlide + 1) % 2 })), 13000);
+    // Ilumina las etiquetas del canal por turnos — no depende de :hover, así
+    // que también "prende" en mobile, donde no hay mouse.
+    this.canalTagInterval = setInterval(() => this.setState(s => ({ canalTagIdx: (s.canalTagIdx + 1) % 4 })), 1500);
 
     let phoneTick = 0;
     this.phoneStartTimer = setTimeout(() => {
@@ -723,6 +727,7 @@ class Component extends DCLogic {
     if (this.phoneInterval) clearInterval(this.phoneInterval);
     if (this.phoneStartTimer) clearTimeout(this.phoneStartTimer);
     if (this.headerSlideInterval) clearInterval(this.headerSlideInterval);
+    if (this.canalTagInterval) clearInterval(this.canalTagInterval);
     if (this.heroTypeTimer) clearTimeout(this.heroTypeTimer);
   }
 
@@ -890,7 +895,15 @@ class Component extends DCLogic {
     const statsWrapStyle = `display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px`;
     const canalVisible = !!this.state.blocksVisible['canal'];
     const canalStyle = `position:relative;overflow:hidden;background:linear-gradient(150deg,#17211F 0%,#0F1517 60%);border:1px solid rgba(46,230,184,0.28);border-radius:28px;padding:48px 44px;box-shadow:0 40px 90px -50px rgba(46,230,184,0.5);opacity:${canalVisible ? 1 : 0};transform:translateY(${canalVisible ? 0 : 18}px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
-    const canalTags = ['Finanzas', 'Inversiones', 'Divisas extranjeras', 'Transporte de caudales'].map((label) => ({ label }));
+    const canalTagIdx = this.state.canalTagIdx;
+    const canalTags = ['Finanzas', 'Inversiones', 'Divisas extranjeras', 'Transporte de caudales'].map((label, i) => {
+      const lit = i === canalTagIdx;
+      return {
+        label,
+        style: `color:${lit ? '#2EE6B8' : '#8FA3A7'};text-shadow:${lit ? '0 0 12px rgba(46,230,184,0.55)' : 'none'};transition:color .5s var(--ease),text-shadow .5s var(--ease)`,
+        underlineStyle: `transform:scaleX(${lit ? 1 : 0});transition:transform .5s var(--ease)`,
+      };
+    });
     const heroTypeText = this.state.heroTypeText;
     const contactoVisible = !!this.state.blocksVisible['contacto'];
     const contactoStyle = `position:relative;background:linear-gradient(158deg,#161E20 0%,#0F1517 100%);border:1px solid rgba(46,230,184,0.2);border-radius:24px;padding:64px 48px;box-shadow:0 0 60px -25px rgba(46,230,184,0.25);opacity:${contactoVisible ? 1 : 0};transform:translateY(${contactoVisible ? 0 : 18}px) scale(${contactoVisible ? 1 : 0.99});transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)`;
