@@ -519,7 +519,7 @@ a:hover{color:#5EFFD4}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { soyVisible: false, hitosVisible: {}, statsCount: 0, statsVisible: false, postsVisible: false, galleryVisible: {}, reelIndex: 0, reelMuted: true, reelsInView: false, reelPaused: false, heroTypeText: '', loading: true, scrollProgress: 0, activeSection: 0, showBackToTop: false, parallaxY: 0, blocksVisible: {}, taglineChars: 0, phoneDisplay: '', tiltX: 0, tiltY: 0, headerSlide: 0, canalTagIdx: 0, soloInView: false, soloPaused: false, soloMuted: true, midTypeText: '' };
-  heroPhrases = ['Papá y amigo', 'Palabra y compromiso', 'Cercano al barrio', 'Finanzas con propósito'];
+  heroPhrases = ['Papá y amigo', 'Palabra y compromiso', 'Compañero y amigo', 'Finanzas con propósito'];
   taglineFull = 'Construyo instituciones financieras sólidas y equipos que piensan a largo plazo.';
   phoneFull = '+54 9 11 5175-8481';
   sectionIds = ['hero', 'sobre-mi', 'resultados', 'experiencia', 'novedades', 'servicios', 'galeria', 'canal', 'contacto'];
@@ -556,7 +556,7 @@ class Component extends DCLogic {
     // Segundo slider, entre el hero y "Quién soy" — mismo mecanismo, frases
     // distintas, arranca un toque después para no tipear en perfecta
     // sincronía con el del hero.
-    this.midPhrases = ['Cerca tuyo, siempre', 'Estoy para ayudarte', 'Ayudamos a emprendedores', 'Hablemos cuando quieras'];
+    this.midPhrases = ['Cerca tuyo, siempre', 'Estoy para ayudarte', 'Ayudo a emprendedores', 'Hablemos cuando quieras'];
     let midPhraseIdx = 0, midCharIdx = 0, midTyping = true;
     const midTypeTick = () => {
       const phrase = this.midPhrases[midPhraseIdx];
